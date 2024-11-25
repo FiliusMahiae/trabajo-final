@@ -35,13 +35,11 @@ export default function RegisterPage() {
                 setRegisterError('El usuario ya existe. Por favor, intenta con un correo diferente.');
             }
         } catch (error) {
-            console.error('Registration failed:', error);
             setRegisterError('Error de conexión con el servidor. Por favor, intenta nuevamente más tarde.');
         }
     };
 
     const sendPersonalData = async () => {
-        console.log(registerData);
         try {
             const token = localStorage.getItem('jwt');
             const response = await fetch('https://bildy-rpmaya.koyeb.app/api/user/register', {
@@ -57,14 +55,7 @@ export default function RegisterPage() {
                     nif: registerData.nif
                 }),
             });
-
-            const responseData = await response.json();
-
-            if (response.status === 200) {
-                console.log(responseData);
-            }
         } catch (error) {
-            console.log('Registration failed:', error);
             setRegisterError('Error de conexión con el servidor. Por favor, intenta nuevamente más tarde.');
         }
     }
