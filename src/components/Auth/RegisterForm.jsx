@@ -10,7 +10,7 @@ export default function RegisterPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [registerError, setRegisterError] = useState('');
     const [isCodeStep, setIsCodeStep] = useState(false);
-
+    const [registerData, setRegisterData] = useState(); 
     const onRegisterSubmit = async (data) => {
         try {
             const response = await fetch('https://bildy-rpmaya.koyeb.app/api/user/register', {
@@ -30,6 +30,7 @@ export default function RegisterPage() {
                 setIsCodeStep(true);
                 const { token } = responseData;
                 localStorage.setItem('jwt', token);
+                setRegisterData(data);
             } else if (response.status === 409) {
                 setRegisterError('El usuario ya existe. Por favor, intenta con un correo diferente.');
             }
@@ -38,6 +39,35 @@ export default function RegisterPage() {
             setRegisterError('Error de conexión con el servidor. Por favor, intenta nuevamente más tarde.');
         }
     };
+
+    const sendPersonalData = async () => {
+        console.log(registerData);
+        try {
+            const token = localStorage.getItem('jwt');
+            const response = await fetch('https://bildy-rpmaya.koyeb.app/api/user/register', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    email: registerData.email,
+                    name: registerData.firstName,
+                    surnames: registerData.lastName,
+                    nif: registerData.nif
+                }),
+            });
+
+            const responseData = await response.json();
+
+            if (response.status === 200) {
+                console.log(responseData);
+            }
+        } catch (error) {
+            console.log('Registration failed:', error);
+            setRegisterError('Error de conexión con el servidor. Por favor, intenta nuevamente más tarde.');
+        }
+    }
 
     const onCodeSubmit = async (data) => {
         try {
@@ -52,16 +82,19 @@ export default function RegisterPage() {
                     code: data.code,
                 }),
             });
-            
+
             if (response.ok) {
+                sendPersonalData();
                 router.push('/dashboard');
-            } else if(response.status === 500){
+            } else if (response.status === 500) {
                 setRegisterError('Código incorrecto');
             }
         } catch (error) {
             setRegisterError('Error en el servidor');
         }
     };
+
+    
 
     return (
         <div className="flex items-center justify-center h-screen bg-gray-100">
@@ -101,6 +134,21 @@ export default function RegisterPage() {
                                     <p className="text-red-600 mt-1">{errors.lastName.message}</p>
                                 )}
                             </div>
+                        </div>
+
+                        <div>
+                            <label htmlFor="nif" className="block font-medium mb-1 text-gray-900">
+                                NIF
+                            </label>
+                            <input
+                                id="nif"
+                                type="text"
+                                {...register('nif', { required: 'El NIF es requerido', maxLength: { value: 9, message: 'El NIF debe tener 9 carácteres' }, minLength: { value: 9, message: 'El NIF debe tener 9 carácteres' } })}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500 text-gray-900"
+                            />
+                            {errors.nif && (
+                                <p className="text-red-600 mt-1">{errors.nif.message}</p>
+                            )}
                         </div>
 
                         <div className="mb-4 text-gray-900">
