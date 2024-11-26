@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from 'react';  // Importa hooks de React para manejar estado y efectos secundarios
 
 export default function UserProfile() {
