@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useNavbar } from "@/context/NavbarContext";
 import ClientsList from "@/components/Dashboard/Clients/ClientList";
 import ClientDetails from "@/components/Dashboard/Clients/ClientDetails";
+import ClientProjects from "@/components/Dashboard/Clients/ClientProjects";
 
 export default function PageClients() {
   const { updateNavbar } = useNavbar();
@@ -62,7 +63,10 @@ export default function PageClients() {
       <div className="w-2/3">
         <h1 className="text-2xl font-bold mb-6">Detalles del cliente</h1>
         {selectedClient ? (
-          <ClientDetails client={selectedClient} onEdit={handleClientEdit}/>
+          <>
+            <ClientDetails client={selectedClient} onEdit={handleClientEdit} />
+            <ClientProjects clientId={selectedClient._id} />
+          </>
         ) : (
           <div className="p-8 border rounded-md shadow-sm">
             <p>Seleccione un cliente de la lista para ver los detalles.</p>

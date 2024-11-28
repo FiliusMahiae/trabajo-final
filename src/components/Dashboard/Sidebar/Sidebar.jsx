@@ -30,6 +30,11 @@ export default function Sidebar() {
                         href="/dashboard/projects"
                     />
                     <SidebarItem
+                        title="Crear Proyecto"
+                        icon="/icons/projects.svg"
+                        href="/dashboard/create-project"
+                    />
+                    <SidebarItem
                         title="Albaranes"
                         icon="/icons/albaranes.svg"
                         href="/dashboard/albaranes"
