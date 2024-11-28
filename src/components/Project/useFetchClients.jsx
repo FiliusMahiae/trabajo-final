@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useFetchClients() {
+export default function useFetchClients() {
     const [clients, setClients] = useState([]);
 
     useEffect(() => {

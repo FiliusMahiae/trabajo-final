@@ -3,10 +3,10 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useNavbar } from "@/context/NavbarContext";
-import { FormFields } from "@/components/Project/FormFields.jsx";
-import { ClientSelect } from "@/components/Project/ClientSelect";
-import { AddressFields } from "@/components/Project/AddressFields";
-import { FormButtons } from "@/components/Project/FormButtons";
+import  FormFields  from "@/components/Project/FormFields.jsx";
+import  ClientSelect  from "@/components/Project/ClientSelect";
+import  AddressFields  from "@/components/Project/AddressFields";
+import  FormButtons  from "@/components/Project/FormButtons";
 
 export default function NewProjectForm() {
     const { updateNavbar } = useNavbar();

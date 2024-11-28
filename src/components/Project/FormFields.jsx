@@ -1,4 +1,4 @@
-export function FormFields({ register, errors }) {
+export default function FormFields({ register, errors }) {
     return (
         <>
             <div>
@@ -23,7 +23,13 @@ export function FormFields({ register, errors }) {
                 <label className="block text-sm font-medium mb-2">Email</label>
                 <input
                     type="email"
-                    {...register("email", { required: "El email es obligatorio" })}
+                    {...register("email", {
+                        required: "El email es obligatorio",
+                        pattern: {
+                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                            message: "El correo electrónico no es válido",
+                        },
+                    })}
                     className="w-full p-2 border rounded-md"
                 />
                 {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
@@ -34,7 +40,7 @@ export function FormFields({ register, errors }) {
                     type="text"
                     {...register("code", {
                         required: "El código interno del proyecto es obligatorio",
-                        value: `PROJ-${Math.floor(1000 + Math.random() * 9000)}` // Genera un código interno automáticamente
+                        value: `PROJ-${Math.floor(1000 + Math.random() * 9000)}`, // Genera un código interno automáticamente
                     })}
                     className="w-full p-2 border rounded-md"
                     readOnly

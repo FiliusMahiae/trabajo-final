@@ -1,6 +1,6 @@
-import { useFetchClients } from "./useFetchClients";
+import useFetchClients from "./useFetchClients";
 
-export function ClientSelect({ register, errors }) {
+export default function ClientSelect({ register, errors }) {
     const clients = useFetchClients();
 
     return (

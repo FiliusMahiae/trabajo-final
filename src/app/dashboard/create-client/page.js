@@ -142,7 +142,7 @@ export default function PageCreateClient() {
           <Link href="/dashboard/clients">
             <button
               type="button"
-              className="w-full py-2 px-4 white text-red-600 border border-red-600 rounded-md hover:bg-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+              className="w-full py-2 px-4 white text-red-600 border border-red-600 rounded-md hover:bg-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
               Descartar
             </button>
           </Link>
