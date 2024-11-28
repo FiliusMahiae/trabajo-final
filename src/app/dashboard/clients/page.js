@@ -55,6 +55,7 @@ export default function PageClients() {
         </Suspense>
       </div>
       <div className="w-2/3">
+        <h1 className="text-2xl font-bold mb-6">Detalles del cliente</h1>
         {selectedClient ? (
           <ClientDetails client={selectedClient} />
         ) : (
