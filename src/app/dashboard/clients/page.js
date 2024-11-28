@@ -17,34 +17,39 @@ export default function PageClients() {
   }, [updateNavbar]);
 
   // Obtener la lista de clientes
-  useEffect(() => {
-    const fetchClients = async () => {
-      const token = localStorage.getItem('jwt');
-      if (token) {
-        try {
-          const response = await fetch("https://bildy-rpmaya.koyeb.app/api/client", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              'Authorization': `Bearer ${token}`
-            },
-          });
-          if (!response.ok) {
-            throw new Error("Error al obtener la lista de clientes");
-          }
-          const data = await response.json();
-          setClients(data);
-        } catch (error) {
-          setError(error.message);
+  const fetchClients = async () => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      try {
+        const response = await fetch("https://bildy-rpmaya.koyeb.app/api/client", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Error al obtener la lista de clientes");
         }
+        const data = await response.json();
+        setClients(data);
+      } catch (error) {
+        setError(error.message);
       }
-    };
+    }
+  };
+
+  useEffect(() => {
     fetchClients();
   }, []);
 
   if (error) {
     return <div>Error: {error}</div>;
   }
+
+  const handleClientEdit = () => {
+    fetchClients();
+  };
 
   return (
     <div className="flex p-8 gap-8">
@@ -57,7 +62,7 @@ export default function PageClients() {
       <div className="w-2/3">
         <h1 className="text-2xl font-bold mb-6">Detalles del cliente</h1>
         {selectedClient ? (
-          <ClientDetails client={selectedClient} />
+          <ClientDetails client={selectedClient} onEdit={handleClientEdit}/>
         ) : (
           <div className="p-8 border rounded-md shadow-sm">
             <p>Seleccione un cliente de la lista para ver los detalles.</p>
