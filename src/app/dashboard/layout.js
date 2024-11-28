@@ -1,32 +1,24 @@
-"use client";
-
+import { NavbarProvider } from "../../context/NavbarContext";
 import Sidebar from '../../components/Dashboard/Sidebar/Sidebar';
-import Navbar from '../../components/Dashboard/Navbar';
-
-import { useState } from 'react';
+import Navbar from '../../components/Dashboard/Navbar/Navbar';
 
 const DashboardLayout = ({ children }) => {
-
-    const [navBarTitle, setNavbarTitle] = useState("");
-    const [navBarDesc, setNavbarDesc] = useState("");
-
-    const handleNavbarChange = (title, desc) => {
-        setNavbarTitle(title);
-        setNavbarDesc(desc);
-    };
-
-    return (
-        <div className="flex h-screen bg-gray-100 overflow-hidden">
-            <div className="w-1/5">
-                <Sidebar navBarChangeHandler={handleNavbarChange} />
-            </div>
-
-            <div className="w-4/5 flex flex-col">
-                <Navbar sectionName={navBarTitle} sectionDesc={navBarDesc} />
-                <main className="flex-1 overflow-auto p-3 bg-slate-200">{children}</main>
-            </div>
+  return (
+    <NavbarProvider>
+      <div className="flex h-screen bg-gray-100 overflow-hidden">
+        <div className="w-1/5">
+          <Sidebar />
         </div>
-    );
+
+        <div className="w-4/5 flex flex-col">
+          <Navbar />
+          <main className="flex-1 overflow-auto p-3 bg-slate-400">
+            <div className="text-gray-900 bg-slate-100 border p-3 h-full rounded-xl">{children}</div>
+            </main>
+        </div>
+      </div>
+    </NavbarProvider>
+  );
 };
 
 export default DashboardLayout;

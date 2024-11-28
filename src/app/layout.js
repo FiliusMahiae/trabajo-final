@@ -15,6 +15,9 @@ const geistMono = localFont({
 export const metadata = {
   title: "Albaranify",
   description: "Haz tus albaranes mejores!",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {

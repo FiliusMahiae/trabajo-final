@@ -1,14 +1,17 @@
 "use client";
 
 import UserProfile from "./UserProfile";
+import { useNavbar } from "../../../context/NavbarContext";
 
-export default function Navbar({ sectionName, sectionDesc }) {
+export default function Navbar() {
+    const { title, desc } = useNavbar();
+
     return (
         <div className="flex items-center justify-between text-gray-900 border border-red-600 h-20 p-4">
             {/* Section Title and Description */}
             <div>
-                <h1 className="text-xl font-bold">{sectionName}</h1>
-                <p className="text-sm text-gray-600">{sectionDesc}</p>
+                <h1 className="text-xl font-bold">{title}</h1>
+                <p className="text-sm text-gray-600">{desc}</p>
             </div>
 
             {/* Search Bar */}
