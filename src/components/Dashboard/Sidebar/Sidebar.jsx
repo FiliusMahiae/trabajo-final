@@ -20,6 +20,11 @@ export default function Sidebar() {
                         href="/dashboard/clients"
                     />
                     <SidebarItem
+                        title="Añadir Cliente"
+                        icon="/icons/create-client.svg"
+                        href="/dashboard/create-client"
+                    />
+                    <SidebarItem
                         title="Proyectos"
                         icon="/icons/projects.svg"
                         href="/dashboard/projects"

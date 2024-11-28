@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function PageCreateClient() {
   const { updateNavbar } = useNavbar();
-  const [message, setMessage] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   // Usa useEffect para actualizar el estado después del renderizado inicial
@@ -18,10 +18,7 @@ export default function PageCreateClient() {
   }, [updateNavbar]);
 
   // Manejador del formulario
-  const showMessage = () => {
-    setMessage(true);
-    setTimeout(() => setMessage(false), 3000);
-  };
+  
 
   const onSubmit = async (data) => {
     const token = localStorage.getItem('jwt');
@@ -41,9 +38,10 @@ export default function PageCreateClient() {
         const result = await response.json();
         console.log("Cliente creado:", result);
       reset();
+    setShowPopup(true);
       showMessage();
       } catch (error) {
-        console.error("Error al crear cliente:", error);
+        console.log("Error al crear cliente:", error);
       }
     }
   };
@@ -51,7 +49,20 @@ export default function PageCreateClient() {
   return (
     <div className="text-gray-900 p-8">
       <h1 className="text-2xl font-bold mb-6">Crear Cliente</h1>
-      {message && <div className="mb-4 p-4 bg-green-100 text-green-700 rounded">Cliente creado con éxito</div>}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-lg text-center">
+            <img src="/like.svg" alt="Success Tick" className="mx-auto mb-4 w-16 h-16" />
+            <h2 className="text-2xl font-bold mb-4">¡Cliente creado y guardado con éxito!</h2>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            >
+              Continuar
+            </button>
+          </div>
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">Nombre</label>
@@ -145,4 +156,5 @@ export default function PageCreateClient() {
     </div>
   );
 }
+
 
