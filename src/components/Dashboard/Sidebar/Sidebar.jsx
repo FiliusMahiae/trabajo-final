@@ -31,7 +31,7 @@ export default function Sidebar() {
                     />
                     <SidebarItem
                         title="Crear Proyecto"
-                        icon="/icons/projects.svg"
+                        icon="/icons/create-project.svg"
                         href="/dashboard/create-project"
                     />
                     <SidebarItem

@@ -6,8 +6,10 @@ import LoadingSpinner from '@/components/Project/LoadingSpinner';
 import ErrorNotification from '@/components/Project/ErrorNotification';
 import ProjectsTable from '@/components/Project/ProjectsTable';
 import FilterBar from '@/components/Project/FilterBar';
+import { useNavbar } from "@/context/NavbarContext";
 
 export default function ProjectsPage() {
+  const { updateNavbar } = useNavbar();
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,6 +22,10 @@ export default function ProjectsPage() {
       endDate: '',
     },
   });
+
+  useEffect(() => {
+    updateNavbar("Proyectos", "Lista de proyectos");
+  }, [updateNavbar]);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -63,7 +69,7 @@ export default function ProjectsPage() {
       });
     }
     setFilteredProjects(filtered);
-  }; 
+  };
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorNotification message={error.message} />;
