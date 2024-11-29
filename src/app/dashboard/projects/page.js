@@ -58,7 +58,7 @@ export default function ProjectsPage() {
       const startDate = new Date(filters.startDate).setHours(0, 0, 0, 0);
       const endDate = new Date(filters.endDate).setHours(23, 59, 59, 999);
       filtered = filtered.filter(project => {
-        const creationDate = new Date(project.createdAt).setHours(0, 0, 0, 0);;
+        const creationDate = new Date(project.createdAt).setHours(0, 0, 0, 0);
         return creationDate >= startDate && creationDate <= endDate;
       });
     }
