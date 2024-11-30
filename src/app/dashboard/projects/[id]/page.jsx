@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState, use } from 'react';
-import { useNavbar } from "@/context/NavbarContext";
+import { useNavbar } from '@/context/NavbarContext';
 import ClientInfo from '@/components/Project/ClientInfo';
 import ProjectInfo from '@/components/Project/ProjectInfo';
+import ProjectAlbaranList from '@/components/Project/ProjectAlbaranList';
+
 
 export default function ProjectPage({ params }) {
   const { updateNavbar } = useNavbar();
@@ -68,9 +70,9 @@ export default function ProjectPage({ params }) {
   }
 
   return (
-    <div className="container mx-auto p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl shadow-lg flex gap-8">
+    <div className="container mx-auto p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl shadow-lg flex flex-col gap-8">
       {/* Información del Proyecto */}
-      <div className="w-2/3 p-8 bg-white border border-gray-200 rounded-3xl shadow-md transition-transform hover:scale-105 hover:shadow-lg">
+      <div className="w-full p-8 bg-white border border-gray-200 rounded-3xl shadow-md transition-transform hover:scale-105 hover:shadow-lg">
         <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-300 pb-2">
           Información del Proyecto
         </h2>
@@ -78,15 +80,18 @@ export default function ProjectPage({ params }) {
       </div>
 
       {/* Información del Cliente */}
-      <div className="w-1/3 p-8 bg-white border border-gray-200 rounded-3xl shadow-md transition-transform hover:scale-105 hover:shadow-lg">
+      <div className="w-full p-8 bg-white border border-gray-200 rounded-3xl shadow-md transition-transform hover:scale-105 hover:shadow-lg">
         <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-300 pb-2">
           Información del Cliente
         </h2>
         <ClientInfo client={client} />
       </div>
+
+      {/* Lista de Albaranes del Proyecto */}
+      <div className="w-full p-8 bg-white border border-gray-200 rounded-3xl shadow-md transition-transform hover:scale-105 hover:shadow-lg">
+        <ProjectAlbaranList projectId={project._id} />
+      </div>
     </div>
-
-
   );
 }
 
