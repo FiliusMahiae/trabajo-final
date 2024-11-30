@@ -4,7 +4,7 @@ import SidebarItem from "./SidebarItem";
 import Image from 'next/image';
 
 export default function Sidebar() {
-    
+
 
     return (
         <div className="h-screen bg-gray-100 p-4 border border-red-600">
@@ -38,6 +38,12 @@ export default function Sidebar() {
                         title="Albaranes"
                         icon="/icons/albaranes.svg"
                         href="/dashboard/albaranes"
+                    />
+
+                    <SidebarItem
+                        title="Crear Albarán"
+                        icon="/icons/albaranes.svg"
+                        href="/dashboard/create-albaran"
                     />
                 </div>
             </div>

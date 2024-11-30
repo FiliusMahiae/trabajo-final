@@ -2,9 +2,9 @@
 
 import { useEffect, useState, use } from 'react';
 import { useNavbar } from '@/context/NavbarContext';
-import ClientInfo from '@/components/Project/ClientInfo';
-import ProjectInfo from '@/components/Project/ProjectInfo';
-import ProjectAlbaranList from '@/components/Project/ProjectAlbaranList';
+import ClientInfo from '@/components/Dashboard/Project/ClientInfo';
+import ProjectInfo from '@/components/Dashboard/Project/ProjectInfo';
+import ProjectAlbaranList from '@/components/Dashboard/Project/ProjectAlbaranList';
 
 
 export default function ProjectPage({ params }) {
@@ -89,7 +89,8 @@ export default function ProjectPage({ params }) {
 
       {/* Lista de Albaranes del Proyecto */}
       <div className="w-full p-8 bg-white border border-gray-200 rounded-3xl shadow-md transition-transform hover:scale-105 hover:shadow-lg">
-        <ProjectAlbaranList projectId={project._id} />
+      <ProjectAlbaranList projectId={project._id} clientId={project.clientId} />
+
       </div>
     </div>
   );

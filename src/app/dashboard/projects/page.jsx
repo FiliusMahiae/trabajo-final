@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import LoadingSpinner from '@/components/Project/LoadingSpinner';
-import ErrorNotification from '@/components/Project/ErrorNotification';
-import ProjectsTable from '@/components/Project/ProjectsTable';
-import FilterBar from '@/components/Project/FilterBar';
+import LoadingSpinner from '@/components/Dashboard/Project/LoadingSpinner';
+import ErrorNotification from '@/components/Dashboard/Project/ErrorNotification';
+import ProjectsTable from '@/components/Dashboard/Project/ProjectsTable';
+import FilterBar from '@/components/Dashboard/Project/FilterBar';
 import { useNavbar } from "@/context/NavbarContext";
 
 export default function ProjectsPage() {
