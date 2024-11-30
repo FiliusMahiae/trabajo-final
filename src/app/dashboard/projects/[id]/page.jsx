@@ -2,8 +2,8 @@
 
 import { useEffect, useState, use } from 'react';
 import { useNavbar } from "@/context/NavbarContext";
-import ClientInfo from '@/components/Project/ProjectInfo';
-import ProjectInfo from '@/components/Project/ClientInfo';
+import ClientInfo from '@/components/Project/ClientInfo';
+import ProjectInfo from '@/components/Project/ProjectInfo';
 
 export default function ProjectPage({ params }) {
   const { updateNavbar } = useNavbar();
@@ -13,7 +13,7 @@ export default function ProjectPage({ params }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    updateNavbar("Peatonalización", "Datos de este Proyecto");
+    updateNavbar("Proyecto", "Datos de este Proyecto");
   }, [updateNavbar]);
 
   const { id } = use(params);
@@ -68,18 +68,25 @@ export default function ProjectPage({ params }) {
   }
 
   return (
-    <div className="container mx-auto p-4 flex">
-
-      {/* Project Information - 2/3 of the page */}
-      <div className="w-2/3 p-4">
+    <div className="container mx-auto p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl shadow-lg flex gap-8">
+      {/* Información del Proyecto */}
+      <div className="w-2/3 p-8 bg-white border border-gray-200 rounded-3xl shadow-md transition-transform hover:scale-105 hover:shadow-lg">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-300 pb-2">
+          Información del Proyecto
+        </h2>
         <ProjectInfo project={project} />
       </div>
 
-      {/* Client Information - 1/3 of the page */}
-      <div className="w-1/3 p-4">
+      {/* Información del Cliente */}
+      <div className="w-1/3 p-8 bg-white border border-gray-200 rounded-3xl shadow-md transition-transform hover:scale-105 hover:shadow-lg">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-300 pb-2">
+          Información del Cliente
+        </h2>
         <ClientInfo client={client} />
       </div>
     </div>
+
+
   );
 }
 
