@@ -39,12 +39,6 @@ export default function Sidebar() {
                         icon="/icons/albaranes.svg"
                         href="/dashboard/albaranes"
                     />
-
-                    <SidebarItem
-                        title="Crear Albarán"
-                        icon="/icons/albaranes.svg"
-                        href="/dashboard/create-albaran"
-                    />
                 </div>
             </div>
         </div>
