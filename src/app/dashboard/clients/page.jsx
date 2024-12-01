@@ -5,6 +5,7 @@ import { useNavbar } from "@/context/NavbarContext";
 import ClientsList from "@/components/Dashboard/Clients/ClientList";
 import ClientDetails from "@/components/Dashboard/Clients/ClientDetails";
 import ClientProjects from "@/components/Dashboard/Clients/ClientProjects";
+import getCookie from "@/components/Auth/getCookie";
 
 export default function PageClients() {
   const { updateNavbar } = useNavbar();
@@ -19,7 +20,7 @@ export default function PageClients() {
 
   // Obtener la lista de clientes
   const fetchClients = async () => {
-    const token = localStorage.getItem('jwt');
+    const token = getCookie('jwt');
     if (token) {
       try {
         const response = await fetch("https://bildy-rpmaya.koyeb.app/api/client", {

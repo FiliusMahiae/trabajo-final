@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from 'react';  // Importa hooks de React para manejar estado y efectos secundarios
+import getCookie from "@/components/Auth/getCookie";
 
 export default function UserProfile() {
     const [userName, setUserName] = useState('');  // Estado local para almacenar el nombre del usuario
 
     useEffect(() => {
-        // Obtiene el token JWT almacenado en localStorage
-        const token = localStorage.getItem('jwt');
+        // Obtiene el token JWT almacenado en Cookies
+        const token = getCookie('jwt');
         if (token) {
             // Función asíncrona para obtener los datos del usuario desde la API
             const fetchUserData = async () => {

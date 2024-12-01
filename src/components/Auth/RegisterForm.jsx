@@ -4,6 +4,7 @@ import { useState } from 'react';  // Importa el hook `useState` de React para g
 import { useRouter } from 'next/navigation';  // Importa `useRouter` de Next.js para realizar navegaciones programáticas.
 import { useForm } from "react-hook-form";  // Importa `useForm` del paquete `react-hook-form` para manejar formularios con validación.
 import Link from "next/link";  // Importa el componente `Link` de Next.js para crear enlaces de navegación de forma eficiente.
+import getCookie from "@/components/Auth/getCookie";
 
 
 export default function RegisterPage() {
@@ -47,7 +48,7 @@ export default function RegisterPage() {
 
                 // Almacena el token JWT en el almacenamiento local para autenticar al usuario.
                 const { token } = responseData;
-                localStorage.setItem('jwt', token);
+                document.cookie = `jwt=${token}; path=/`;
 
                 // Guarda temporalmente los datos del registro.
                 setRegisterData(data);
@@ -66,8 +67,8 @@ export default function RegisterPage() {
     const sendPersonalData = async () => {
         try {
 
-            // Obtiene el token JWT almacenado en localStorage para autenticación
-            const token = localStorage.getItem('jwt');
+            // Obtiene el token JWT almacenado en Cookies para autenticación
+            const token = getCookie('jwt');
 
             // Envía una solicitud PUT a la API para actualizar los datos personales del usuario
             const response = await fetch('https://bildy-rpmaya.koyeb.app/api/user/register', {
@@ -91,8 +92,8 @@ export default function RegisterPage() {
 
     const onCodeSubmit = async (data) => {
         try {
-            // Obtiene el token JWT almacenado en localStorage para autenticación
-            const token = localStorage.getItem('jwt');
+            // Obtiene el token JWT almacenado en Cookies para autenticación
+            const token = getCookie('jwt');
 
             // Envía una solicitud PUT a la API para validar el código de verificación
             const response = await fetch('https://bildy-rpmaya.koyeb.app/api/user/validation', {

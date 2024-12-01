@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import getCookie from "@/components/Auth/getCookie";
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -9,8 +10,8 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        // Leer el token desde localStorage
-        const token = localStorage.getItem('jwt');
+        // Leer el token desde Cookies
+        const token = getCookie('jwt');
         if (!token) {
           console.error("Token no encontrado. Redirigiendo al login...");
           router.push("/login");
@@ -37,7 +38,7 @@ const DashboardPage = () => {
         if (clients.length > 0) {
           router.push("dashboard/clients");
         } else {
-          router.push("dashboard/clients/create-client");
+          router.push("dashboard/create-client");
         }
       } catch (error) {
         console.error("Error al obtener los clientes:", error.message);

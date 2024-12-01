@@ -7,6 +7,7 @@ import ErrorNotification from '@/components/Dashboard/Project/ErrorNotification'
 import ProjectsTable from '@/components/Dashboard/Project/ProjectsTable';
 import FilterBar from '@/components/Dashboard/Project/FilterBar';
 import { useNavbar } from "@/context/NavbarContext";
+import getCookie from "@/components/Auth/getCookie";
 
 export default function ProjectsPage() {
   const { updateNavbar } = useNavbar();
@@ -29,7 +30,7 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const token = localStorage.getItem('jwt');
+      const token = getCookie('jwt');
       if (token) {
         try {
           const response = await fetch('https://bildy-rpmaya.koyeb.app/api/project', {

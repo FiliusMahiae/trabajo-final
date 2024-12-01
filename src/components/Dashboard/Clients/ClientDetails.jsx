@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import getCookie from "@/components/Auth/getCookie";
 
 export default function ClientDetails({ client, onEdit }) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -17,7 +18,7 @@ export default function ClientDetails({ client, onEdit }) {
     }, [client, reset]);
 
     const onSubmit = async (data) => {
-        const token = localStorage.getItem('jwt');
+        const token = getCookie('jwt');
         try {
             const response = await fetch(`https://bildy-rpmaya.koyeb.app/api/client/${client._id}`, {
                 method: "PUT",

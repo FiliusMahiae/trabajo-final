@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ClientProjectCard from "@/components/Dashboard/Clients/ClientProjectCard";
+import getCookie from "@/components/Auth/getCookie";
 
 export default function ClientProjects({ clientId }) {
   const [projects, setProjects] = useState([]);
@@ -9,7 +10,7 @@ export default function ClientProjects({ clientId }) {
 
   // Obtener la lista de proyectos del cliente
   const fetchProjects = async () => {
-    const token = localStorage.getItem('jwt');
+    const token = getCookie('jwt');
     if (token) {
       try {
         const response = await fetch("https://bildy-rpmaya.koyeb.app/api/project", {

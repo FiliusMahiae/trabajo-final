@@ -1,5 +1,6 @@
 "use client";
 
+import getCookie from "@/components/Auth/getCookie";
 import { useState, useEffect } from "react";
 
 export default function useFetchAlbaranes(projectId) {
@@ -8,7 +9,7 @@ export default function useFetchAlbaranes(projectId) {
   const [error, setError] = useState(null);
 
   const fetchAlbaranes = async () => {
-    const token = localStorage.getItem("jwt");
+    const token = getCookie("jwt");
     if (token && projectId) {
       try {
         setLoading(true);

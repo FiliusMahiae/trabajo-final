@@ -7,6 +7,7 @@ import ErrorNotification from '@/components/Dashboard/Project/ErrorNotification'
 import DeliveryNotesTable from '@/components/Dashboard/DeliveryNote/DeliveryNotesTable';
 import FilterBar from '@/components/Dashboard/DeliveryNote/FilterBar';
 import { useNavbar } from "@/context/NavbarContext";
+import getCookie from "@/components/Auth/getCookie";
 
 export default function DeliveryNotesPage() {
   const { updateNavbar } = useNavbar();
@@ -29,7 +30,7 @@ export default function DeliveryNotesPage() {
 
   useEffect(() => {
     const fetchDeliveryNotes = async () => {
-      const token = localStorage.getItem('jwt');
+      const token = getCookie('jwt');
       if (token) {
         try {
           const response = await fetch('https://bildy-rpmaya.koyeb.app/api/deliverynote', {

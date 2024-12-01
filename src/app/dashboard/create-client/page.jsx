@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavbar } from "@/context/NavbarContext";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import getCookie from "@/components/Auth/getCookie";
 
 import { useState } from "react";
 
@@ -21,7 +22,7 @@ export default function PageCreateClient() {
   
 
   const onSubmit = async (data) => {
-    const token = localStorage.getItem('jwt');
+    const token = getCookie('jwt');
     if(token){
       try {
         const response = await fetch("https://bildy-rpmaya.koyeb.app/api/client", {

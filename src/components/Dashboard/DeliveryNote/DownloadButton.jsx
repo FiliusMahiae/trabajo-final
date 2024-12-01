@@ -1,12 +1,13 @@
 "use client";
 
 import React from 'react';
+import getCookie from "@/components/Auth/getCookie";
 
 export default function DownloadButton({ noteId }) {
   const handleDownload = async () => {
     try {
       // Obtiene el token de autenticación almacenado en el navegador
-      const token = localStorage.getItem('jwt');
+      const token = getCookie('jwt');
       if (!token) {
         console.error("Token de autenticación no encontrado");
         return;

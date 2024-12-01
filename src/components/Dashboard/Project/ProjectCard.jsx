@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import getCookie from "@/components/Auth/getCookie";
 
 export default function ProjectCard({ project }) {
     const [client, setClient] = useState(null);
@@ -10,7 +11,7 @@ export default function ProjectCard({ project }) {
 
     useEffect(() => {
         const fetchClient = async () => {
-            const token = localStorage.getItem('jwt');
+            const token = getCookie('jwt');
             if (token && project.clientId) {
                 try {
                     const response = await fetch(`https://bildy-rpmaya.koyeb.app/api/client/${project.clientId}`, {

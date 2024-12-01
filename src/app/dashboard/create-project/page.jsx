@@ -7,6 +7,7 @@ import  FormFields  from "@/components/Dashboard/Project/FormFields.jsx";
 import  ClientSelect  from "@/components/Dashboard/Project/ClientSelect";
 import  AddressFields  from "@/components/Dashboard/Project/AddressFields";
 import  FormButtons  from "@/components/Dashboard/Project/FormButtons";
+import getCookie from "@/components/Auth/getCookie";
 
 export default function NewProjectForm() {
     const { updateNavbar } = useNavbar();
@@ -22,7 +23,7 @@ export default function NewProjectForm() {
     }, [updateNavbar]);
 
     const onSubmit = async (data) => {
-        const token = localStorage.getItem('jwt');
+        const token = getCookie('jwt');
         if (token) {
             try {
                 const response = await fetch("https://bildy-rpmaya.koyeb.app/api/project", {

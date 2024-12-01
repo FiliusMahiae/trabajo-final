@@ -1,12 +1,13 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import getCookie from "@/components/Auth/getCookie";
 
 export default function AlbaranForm({ projectId, clientId, onNewAlbaran }) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
-    const token = localStorage.getItem("jwt");
+    const token = getCookie("jwt");
     if (token && projectId && clientId) {
       try {
         const payload = { ...data, projectId, clientId };

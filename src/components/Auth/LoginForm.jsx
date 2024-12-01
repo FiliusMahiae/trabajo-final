@@ -4,6 +4,7 @@ import { useState } from 'react';  // Hook de React para manejar estado local.
 import { useRouter } from 'next/navigation';  // Hook de Next.js para realizar redirecciones programáticas.
 import { useForm } from "react-hook-form";  // Biblioteca para gestionar formularios con validación.
 import Link from "next/link";  // Componente de Next.js para enlaces internos optimizados.
+import getCookie from "@/components/Auth/getCookie";
 
 export default function LoginForm() {
   const router = useRouter();  // Para redirigir al usuario a otras rutas.
@@ -26,10 +27,11 @@ export default function LoginForm() {
       });
 
       if (response.ok) {
-        // Si la autenticación es exitosa, guarda el token JWT en localStorage.
+        // Si la autenticación es exitosa, guarda el token JWT en Cookies.
         const responseData = await response.json();
         const { token } = responseData;
-        localStorage.setItem('jwt', token);  // Almacena el token en localStorage.
+        document.cookie = `jwt=${token}; path=/`;  // Almacena el token en Cookies.
+        console.log(document.cookie);
         router.push('/dashboard');  // Redirige al usuario al dashboard.
       } else if (response.status === 404 || response.status === 401) {
         // Muestra un error si el usuario o contraseña no son válidos.

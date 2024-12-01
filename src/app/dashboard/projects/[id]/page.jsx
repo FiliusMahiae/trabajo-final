@@ -5,6 +5,7 @@ import { useNavbar } from '@/context/NavbarContext';
 import ClientInfo from '@/components/Dashboard/Project/ClientInfo';
 import ProjectInfo from '@/components/Dashboard/Project/ProjectInfo';
 import ProjectAlbaranList from '@/components/Dashboard/Project/ProjectAlbaranList';
+import getCookie from "@/components/Auth/getCookie";
 
 
 export default function ProjectPage({ params }) {
@@ -22,7 +23,7 @@ export default function ProjectPage({ params }) {
 
   useEffect(() => {
     const fetchProject = async () => {
-      const token = localStorage.getItem('jwt');
+      const token = getCookie('jwt');
       if (token && id) {
         try {
           // Fetch the project data

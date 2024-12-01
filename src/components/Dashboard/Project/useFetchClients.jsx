@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import getCookie from "@/components/Auth/getCookie";
 
 export default function useFetchClients() {
     const [clients, setClients] = useState([]);
 
     useEffect(() => {
         const fetchClients = async () => {
-            const token = localStorage.getItem('jwt');
+            const token = getCookie('jwt');
             if (token) {
                 try {
                     const response = await fetch("https://bildy-rpmaya.koyeb.app/api/client", {
