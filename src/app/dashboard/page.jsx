@@ -47,7 +47,7 @@ const DashboardPage = () => {
   }, [router]);
 
   return (
-    <div className="text-gray-900 border border-red-600 h-full bg-white rounded">
+    <div className="text-gray-900 h-full bg-white rounded">
       <p>Redirigiendo...</p>
     </div>
   );
