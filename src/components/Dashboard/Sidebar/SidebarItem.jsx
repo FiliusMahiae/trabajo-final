@@ -7,7 +7,7 @@ export default function SidebarItem({ title, icon, href}) {
 
   return (
     <Link href={href}>
-      <div className="flex items-center p-3 my-3 hover:bg-gray-200 rounded-md transition-colors">
+      <div className="flex items-center p-3 my-3 hover:bg-gray-200 hover:shadow-sm rounded-md transition-colors duration-200">
         <Image
           src={icon}
           alt={`${title} icon`}

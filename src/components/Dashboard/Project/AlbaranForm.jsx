@@ -85,7 +85,7 @@ export default function AlbaranForm({ projectId, clientId, onNewAlbaran }) {
 
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 shadow-md hover:shadow-lg transition-all duration-300"
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 shadow-md hover:shadow-lg transition-all duration-300"
         >
           Crear Albarán
         </button>

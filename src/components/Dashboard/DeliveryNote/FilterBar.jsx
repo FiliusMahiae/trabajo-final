@@ -25,7 +25,7 @@ export default function FilterBar({ register, handleSubmit }) {
             placeholder="Fecha de fin"
             className="w-1/3 p-2 border border-gray-300 rounded-md"
           />
-          <button type="submit" className="p-2 bg-blue-500 text-white rounded-md">Buscar</button>
+          <button type="submit" className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 shadow-md transition-all duration-300">Buscar</button>
         </div>
       </form>
     );

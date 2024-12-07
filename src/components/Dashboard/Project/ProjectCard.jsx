@@ -63,7 +63,7 @@ export default function ProjectCard({ project }) {
     return (
         <>
             <Link href={`/dashboard/projects/${project._id}`}>
-                <div className="w-1/6 text-left text-gray-800 underline">{project.projectCode}</div>
+                <div className="w-1/6 text-left text-gray-800 underline hover:scale-105">{project.projectCode}</div>
             </Link>
             <div className="w-1/6 text-left text-gray-800">{new Date(project.createdAt).toLocaleDateString()}</div>
             <div className="w-1/6 text-left text-gray-800">{project.name}</div>

@@ -49,7 +49,7 @@ export default function DeleteButton({ noteId, onDelete }) {
   return (
     <button
       onClick={handleDelete}
-      className="px-4 py-2 border border-red-600 text-white rounded hover:bg-red-100"
+      className="px-4 py-2 border border-red-600 text-white rounded hover:bg-red-100 shadow hover:shadow-md transition-all duration-300"
     >
       <img src="/icons/delete.svg" alt="Descargar" className="h-5 w-5" /> {/* Ícono de descarga */}
     </button>

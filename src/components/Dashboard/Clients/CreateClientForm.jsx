@@ -39,13 +39,13 @@ export default function CreateClientForm({ onSubmit, showPopup, setShowPopup, er
           <Link href="/dashboard/clients">
             <button
               type="button"
-              className="w-full py-2 px-4 white text-red-600 border border-red-600 rounded-md hover:bg-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+              className="w-full py-2 px-4 white text-red-600 border border-red-600 rounded-md shadow-md hover:bg-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-all duration-300">
               Descartar
             </button>
           </Link>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md transition-all duration-300">
             Crear Cliente
           </button>
         </div>
