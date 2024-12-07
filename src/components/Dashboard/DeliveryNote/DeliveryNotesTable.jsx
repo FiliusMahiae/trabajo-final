@@ -1,8 +1,15 @@
 "use client";
 
-import DeliveryNoteCard from './DeliveryNoteCard';
+import { useState } from "react";
+import DeliveryNoteCard from "./DeliveryNoteCard";
 
-export default function DeliveryNotesTable({ deliveryNotes }) {
+export default function DeliveryNotesTable({ deliveryNotes: initialDeliveryNotes }) {
+  const [deliveryNotes, setDeliveryNotes] = useState(initialDeliveryNotes);
+
+  const handleDelete = (deletedNoteId) => {
+    setDeliveryNotes((prevNotes) => prevNotes.filter((note) => note._id !== deletedNoteId));
+  };
+
   return (
     <div className="overflow-x-auto w-full shadow-md rounded-lg border border-gray-200">
       <div className="min-w-full bg-white">
@@ -15,7 +22,12 @@ export default function DeliveryNotesTable({ deliveryNotes }) {
           <div className="w-1/6">Acciones</div>
         </div>
         {deliveryNotes.map((note, index) => (
-          <DeliveryNoteCard key={note._id} note={note} index={index} />
+          <DeliveryNoteCard
+            key={note._id}
+            note={note}
+            index={index}
+            onDelete={handleDelete}
+          />
         ))}
       </div>
     </div>
