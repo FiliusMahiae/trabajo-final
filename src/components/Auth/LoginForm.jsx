@@ -94,7 +94,7 @@ export default function LoginForm() {
           </div>
 
           {/* Enlace para recuperar la contraseña */}
-          <p className="text-right mb-4 text-gray-900">
+          <p className="text-center mb-4 text-gray-900">
             <Link href="/forgot-password">
               ¿Has olvidado tu contraseña? <span className="text-blue-500">Recupérala aquí</span>
             </Link>

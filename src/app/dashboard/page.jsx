@@ -13,8 +13,7 @@ const DashboardPage = () => {
         // Leer el token desde Cookies
         const token = getCookie('jwt');
         if (!token) {
-          console.error("Token no encontrado. Redirigiendo al login...");
-          router.push("/login");
+          console.log("Token no encontrado. Redirigiendo al login...");
           return;
         }
 
@@ -27,8 +26,7 @@ const DashboardPage = () => {
         });
 
         if (!response.ok) {
-          console.error("Error al obtener los clientes. Redirigiendo al login...");
-          router.push("/login");
+          console.log("Error al obtener los clientes. Redirigiendo al login...");
           return;
         }
 
@@ -41,8 +39,7 @@ const DashboardPage = () => {
           router.push("dashboard/create-client");
         }
       } catch (error) {
-        console.error("Error al obtener los clientes:", error.message);
-        router.push("/login"); // Redirigir al login en caso de error
+        console.log("Error al obtener los clientes:", error.message);
       }
     };
 
