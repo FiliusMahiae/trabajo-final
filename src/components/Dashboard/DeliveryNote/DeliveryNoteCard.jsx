@@ -15,7 +15,7 @@ export default function DeliveryNoteCard({ note, index }) {
         <div className="w-1/6 cursor-pointer underline text-blue-500">{note._id}</div>
       </Link>
       <div className="w-1/6">{new Date(note.createdAt).toLocaleDateString()}</div>
-      <div className="w-1/6 w-auto">{note.description}</div>
+      <div className="w-auto">{note.description}</div>
       <div className="w-1/6">{note.hours}</div>
       <div className="w-1/6">
         <span className={`px-3 py-1 text-sm font-medium border rounded-md ${statusStyles}`}>
