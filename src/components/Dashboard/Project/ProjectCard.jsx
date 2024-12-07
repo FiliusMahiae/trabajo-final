@@ -67,7 +67,7 @@ export default function ProjectCard({ project }) {
             </Link>
             <div className="w-1/6 text-left text-gray-800">{new Date(project.createdAt).toLocaleDateString()}</div>
             <div className="w-1/6 text-left text-gray-800">{project.name}</div>
-            <div className="w-1/6 text-left text-gray-800">
+            <div className="w-auto text-left text-gray-800">
                 <div className="flex items-center">
                     {client && client.logo ? (
                         <img src={client.logo} alt={client.name} className="h-8 w-8 rounded-full mr-2" />
