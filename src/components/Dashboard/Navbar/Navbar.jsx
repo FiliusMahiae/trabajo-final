@@ -14,15 +14,6 @@ export default function Navbar() {
                 <p className="text-sm text-gray-500">{desc}</p>
             </div>
 
-            {/* Search Bar */}
-            <div className="flex-1 mx-6">
-                <input
-                    type="text"
-                    placeholder="Buscar..."
-                    className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-            </div>
-
             {/* User Icon and Name */}
             <UserProfile />
         </div>
