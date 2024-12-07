@@ -41,7 +41,7 @@ export default function ProjectCard({ project }) {
             <>
                 <div className="w-1/6 text-left text-gray-800">{project.projectCode}</div>
                 <div className="w-1/6 text-left text-gray-800">{new Date(project.createdAt).toLocaleDateString()}</div>
-                <div className="w-1/6 text-left text-gray-800">{project.name}</div>
+                <div className="w-auto text-left text-gray-800">{project.name}</div>
                 <div className="w-1/6 text-left text-gray-800">Cargando cliente...</div>
                 <div className="w-1/6 text-left text-gray-800">{project.email}</div>
             </>
@@ -53,7 +53,7 @@ export default function ProjectCard({ project }) {
             <>
                 <div className="w-1/6 text-left text-gray-800">{project.projectCode}</div>
                 <div className="w-1/6 text-left text-gray-800">{new Date(project.createdAt).toLocaleDateString()}</div>
-                <div className="w-1/6 text-left text-gray-800">{project.name}</div>
+                <div className="w-auto text-left text-gray-800">{project.name}</div>
                 <div className="w-1/6 text-left text-red-600">Error al cargar cliente</div>
                 <div className="w-1/6 text-left text-gray-800">{project.email}</div>
             </>
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }) {
                 <div className="w-1/6 text-left text-gray-800 underline hover:scale-105">{project.projectCode}</div>
             </Link>
             <div className="w-1/6 text-left text-gray-800">{new Date(project.createdAt).toLocaleDateString()}</div>
-            <div className="w-1/6 text-left text-gray-800">{project.name}</div>
+            <div className="w-auto text-left text-gray-800">{project.name}</div>
             <div className="w-auto text-left text-gray-800">
                 <div className="flex items-center">
                     {client && client.logo ? (
