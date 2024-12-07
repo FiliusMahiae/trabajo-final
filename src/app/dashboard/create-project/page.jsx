@@ -1,16 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useNavbar } from "@/context/NavbarContext";
-import  FormFields  from "@/components/Dashboard/Project/FormFields.jsx";
-import  ClientSelect  from "@/components/Dashboard/Project/ClientSelect";
-import  AddressFields  from "@/components/Dashboard/Project/AddressFields";
-import  FormButtons  from "@/components/Dashboard/Project/FormButtons";
+import FormFields from "@/components/Dashboard/Project/FormFields.jsx";
+import ClientSelect from "@/components/Dashboard/Project/ClientSelect";
+import AddressFields from "@/components/Dashboard/Project/AddressFields";
+import FormButtons from "@/components/Dashboard/Project/FormButtons";
 import getCookie from "@/components/Auth/getCookie";
+import Popup from "@/components/Dashboard/Project/Popup";
 
 export default function NewProjectForm() {
     const { updateNavbar } = useNavbar();
+    const [showPopup, setShowPopup] = useState(false); // Estado para controlar el popup
     const {
         register,
         handleSubmit,
@@ -40,6 +43,7 @@ export default function NewProjectForm() {
                 const result = await response.json();
                 console.log("Proyecto creado:", result);
                 reset();
+                setShowPopup(true); // Mostrar el popup al completar con éxito
             } catch (error) {
                 console.log("Error al crear proyecto:", error);
             }
@@ -55,6 +59,8 @@ export default function NewProjectForm() {
                 <AddressFields register={register} errors={errors} />
                 <FormButtons reset={reset} />
             </form>
+            {showPopup && <Popup setShowPopup={setShowPopup} />} {/* Renderizar el popup */}
         </div>
     );
 }
+
