@@ -34,9 +34,9 @@ const DashboardPage = () => {
 
         // Redirigir según el resultado
         if (clients.length > 0) {
-          router.push("dashboard/clients");
+          router.push("/dashboard/clients");
         } else {
-          router.push("dashboard/create-client");
+          router.push("/dashboard/create-client");
         }
       } catch (error) {
         console.log("Error al obtener los clientes:", error.message);

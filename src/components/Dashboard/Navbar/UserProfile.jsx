@@ -1,47 +1,67 @@
 "use client";
 
-import { useEffect, useState } from 'react';  // Importa hooks de React para manejar estado y efectos secundarios
+import { useEffect, useState } from 'react';
 import getCookie from "@/components/Auth/getCookie";
+import { useRouter } from 'next/navigation';
+import deleteCookie from "@/components/Auth/deleteCookie"; // Función para eliminar cookies
 
 export default function UserProfile() {
-    const [userName, setUserName] = useState('');  // Estado local para almacenar el nombre del usuario
+    const [userName, setUserName] = useState('');
+    const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar si el menú está abierto
+    const router = useRouter();
 
     useEffect(() => {
-        // Obtiene el token JWT almacenado en Cookies
         const token = getCookie('jwt');
         if (token) {
-            // Función asíncrona para obtener los datos del usuario desde la API
             const fetchUserData = async () => {
                 try {
                     const response = await fetch('https://bildy-rpmaya.koyeb.app/api/user', {
-                        method: 'GET',  // Método GET para obtener datos del usuario
+                        method: 'GET',
                         headers: {
-                            'Content-Type': 'application/json',  // Especifica JSON como el tipo de contenido
-                            'Authorization': `Bearer ${token}`  // Incluye el token JWT para autenticación
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
                         }
                     });
-                    const data = await response.json();  // Convierte la respuesta en un objeto JSON
-                    const { name } = data;  // Extrae el nombre del usuario de la respuesta
-                    setUserName(name);  // Actualiza el estado con el nombre del usuario
+                    const data = await response.json();
+                    const { name } = data;
+                    setUserName(name);
                 } catch (error) {
-                    // Manejo de errores en caso de que falle la solicitud a la API
                     console.log('Error fetching user data:', error);
                 }
             };
-            fetchUserData();  // Llama a la función para obtener los datos del usuario
+            fetchUserData();
         }
-    }, []);  // El efecto solo se ejecuta una vez cuando el componente se monta
+    }, []);
+
+    const handleLogout = () => {
+        deleteCookie('jwt'); // Elimina la cookie JWT
+        router.push('/login'); // Redirige a la página de inicio de sesión
+    };
 
     return (
-        <div className="flex items-center">
-            {/* Icono de usuario */}
-            <img
-                src="/userProfile.png"  // Ruta de la imagen del perfil
-                alt="User Icon"
-                className="w-10 h-10 rounded-full mr-2"  // Estilos para el tamaño y bordes redondeados
-            />
-            {/* Nombre del usuario */}
-            <span className="font-medium">{userName}</span>
+        <div className="relative">
+            <div
+                className="flex items-center cursor-pointer"
+                onClick={() => setMenuOpen(!menuOpen)} // Cambia el estado del menú al hacer clic
+            >
+                <img
+                    src="/userProfile.png"
+                    alt="User Icon"
+                    className="w-10 h-10 rounded-full mr-2"
+                />
+                <span className="font-medium">{userName}</span>
+            </div>
+
+            {menuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-md">
+                    <button
+                        className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                        onClick={handleLogout}
+                    >
+                        Cerrar sesión
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

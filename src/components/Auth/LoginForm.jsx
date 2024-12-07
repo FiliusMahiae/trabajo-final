@@ -3,8 +3,7 @@
 import { useState } from 'react';  // Hook de React para manejar estado local.
 import { useRouter } from 'next/navigation';  // Hook de Next.js para realizar redirecciones programáticas.
 import { useForm } from "react-hook-form";  // Biblioteca para gestionar formularios con validación.
-import Link from "next/link";  // Componente de Next.js para enlaces internos optimizados.
-import getCookie from "@/components/Auth/getCookie";
+import Link from 'next/link';
 
 export default function LoginForm() {
   const router = useRouter();  // Para redirigir al usuario a otras rutas.
@@ -92,13 +91,6 @@ export default function LoginForm() {
               <p className="text-red-600 mt-1">{errors.contrasena.message}</p>
             )}
           </div>
-
-          {/* Enlace para recuperar la contraseña */}
-          <p className="text-center mb-4 text-gray-900">
-            <Link href="/forgot-password">
-              ¿Has olvidado tu contraseña? <span className="text-blue-500">Recupérala aquí</span>
-            </Link>
-          </p>
 
           {/* Botón de inicio de sesión */}
           <button

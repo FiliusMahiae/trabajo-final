@@ -52,6 +52,7 @@ export default function RegisterPage() {
 
                 // Guarda temporalmente los datos del registro.
                 setRegisterData(data);
+                setLoginError('');
 
                 // Si el usuario ya existe (código 409)
             } else if (response.status === 409) {
