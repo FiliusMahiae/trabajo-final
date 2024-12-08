@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import getCookie from "@/components/Auth/getCookie";
+import DeleteButton from './DeleteButton';
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, onDelete }) {
     const [client, setClient] = useState(null);
     const [loadingClient, setLoadingClient] = useState(true);
     const [clientError, setClientError] = useState(null);
@@ -69,15 +70,21 @@ export default function ProjectCard({ project }) {
             <div className="w-auto text-left text-gray-800">{project.name}</div>
             <div className="w-auto text-left text-gray-800">
                 <div className="flex items-center">
-                    {client && client.logo ? (
-                        <img src={client.logo} alt={client.name} className="h-8 w-8 rounded-full mr-2" />
-                    ) : (
-                        <img src="/clientPlaceholder.jpg" alt={client.name} className="h-8 w-8 rounded-full mr-2" />
-                    )}
-                    <span>{client ? client.name : 'Cliente no encontrado'}</span>
+                    <img
+                        src={project.clientLogo || "/clientPlaceholder.jpg"}
+                        alt={project.clientName || "Cliente no encontrado"}
+                        className="h-8 w-8 rounded-full mr-2"
+                    />
+                    <span>{project.clientName || "Cliente no encontrado"}</span>
                 </div>
             </div>
             <div className="w-1/6 text-left text-gray-800">{project.email}</div>
+            <DeleteButton
+                itemId={project._id}
+                deleteUrl="https://bildy-rpmaya.koyeb.app/api/project/{id}"
+                onDelete={onDelete}
+                confirmMessage="¿Estás seguro de que deseas eliminar este proyecto?"
+            />
         </>
     );
 }

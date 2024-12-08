@@ -8,72 +8,82 @@ import ClientProjects from "@/components/Dashboard/Clients/ClientProjects";
 import getCookie from "@/components/Auth/getCookie";
 
 export default function PageClients() {
-  const { updateNavbar } = useNavbar();
-  const [clients, setClients] = useState([]);
-  const [selectedClient, setSelectedClient] = useState(null);
-  const [error, setError] = useState(null);
+    const { updateNavbar } = useNavbar();
+    const [clients, setClients] = useState([]);
+    const [selectedClient, setSelectedClient] = useState(null);
+    const [error, setError] = useState(null);
 
-  // Usa useEffect para actualizar el estado después del renderizado inicial
-  useEffect(() => {
-    updateNavbar("Clientes", "Gestión de clientes");
-  }, [updateNavbar]);
+    useEffect(() => {
+        updateNavbar("Clientes", "Gestión de clientes");
+    }, [updateNavbar]);
 
-  // Obtener la lista de clientes
-  const fetchClients = async () => {
-    const token = getCookie('jwt');
-    if (token) {
-      try {
-        const response = await fetch("https://bildy-rpmaya.koyeb.app/api/client", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            'Authorization': `Bearer ${token}`
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Error al obtener la lista de clientes");
+    // Obtener la lista de clientes
+    const fetchClients = async () => {
+        const token = getCookie("jwt");
+        if (token) {
+            try {
+                const response = await fetch("https://bildy-rpmaya.koyeb.app/api/client", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error("Error al obtener la lista de clientes");
+                }
+                const data = await response.json();
+                setClients(data);
+            } catch (error) {
+                setError(error.message);
+            }
         }
-        const data = await response.json();
-        setClients(data);
-      } catch (error) {
-        setError(error.message);
-      }
+    };
+
+    useEffect(() => {
+        fetchClients();
+    }, []);
+
+    if (error) {
+        return <div>Error: {error}</div>;
     }
-  };
 
-  useEffect(() => {
-    fetchClients();
-  }, []);
+    // Maneja la edición del cliente (actualiza la lista)
+    const handleClientEdit = () => {
+        fetchClients();
+    };
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+    // Maneja la eliminación del cliente (actualiza la lista y limpia el cliente seleccionado)
+    const handleClientDelete = (deletedClientId) => {
+        fetchClients();
+        setSelectedClient(null);
+    };
 
-  const handleClientEdit = () => {
-    fetchClients();
-  };
-
-  return (
-    <div className="flex p-8 gap-8">
-      <div className="w-1/3">
-        <h1 className="text-2xl font-bold mb-6">Lista de Clientes</h1>
-        <Suspense fallback={<div>Cargando clientes...</div>}>
-          <ClientsList clients={clients} onSelect={setSelectedClient} />
-        </Suspense>
-      </div>
-      <div className="w-2/3">
-        <h1 className="text-2xl font-bold mb-6">Detalles del cliente</h1>
-        {selectedClient ? (
-          <>
-            <ClientDetails client={selectedClient} onEdit={handleClientEdit} />
-            <ClientProjects clientId={selectedClient._id} />
-          </>
-        ) : (
-          <div className="p-8 border rounded-md shadow-sm">
-            <p>Seleccione un cliente de la lista para ver los detalles.</p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+    return (
+        <div className="flex p-8 gap-8">
+            <div className="w-1/3">
+                <h1 className="text-2xl font-bold mb-6">Lista de Clientes</h1>
+                <Suspense fallback={<div>Cargando clientes...</div>}>
+                    <ClientsList clients={clients} onSelect={setSelectedClient} />
+                </Suspense>
+            </div>
+            <div className="w-2/3">
+                <h1 className="text-2xl font-bold mb-6">Detalles del cliente</h1>
+                {selectedClient ? (
+                    <>
+                        <ClientDetails
+                            client={selectedClient}
+                            onEdit={handleClientEdit}
+                            onDelete={handleClientDelete} // Pasamos handleClientDelete aquí
+                        />
+                        <ClientProjects clientId={selectedClient._id} />
+                    </>
+                ) : (
+                    <div className="p-8 border rounded-md shadow-sm">
+                        <p>Seleccione un cliente de la lista para ver los detalles.</p>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
 }

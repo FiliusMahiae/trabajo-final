@@ -3,8 +3,9 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import getCookie from "@/components/Auth/getCookie";
+import DeleteClientButton from "./DeleteClientButton";
 
-export default function ClientDetails({ client, onEdit }) {
+export default function ClientDetails({ client, onEdit, onDelete }) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             ...client
@@ -126,12 +127,19 @@ export default function ClientDetails({ client, onEdit }) {
                     {errors.address?.province && <span className="text-red-500 text-sm">{errors.address.province.message}</span>}
                 </div>
 
-                <button
-                    type="submit"
-                    className="w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300"
-                >
-                    Editar Cliente
-                </button>
+                <div className="mb-4 grid grid-cols-2 gap-4">
+                    <DeleteClientButton
+                        clientId={client._id}
+                        onDelete={onDelete}
+                    />
+                    <button
+                        type="submit"
+                        className="w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300"
+                    >
+                        Editar Cliente
+                    </button>
+                </div>
+
             </form>
         </div>
     );

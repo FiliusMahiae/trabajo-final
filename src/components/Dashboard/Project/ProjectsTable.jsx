@@ -59,7 +59,7 @@ export default function ProjectsTable({ projects }) {
     <div className="overflow-x-auto w-full shadow-md rounded-lg border border-gray-200">
       <div className="min-w-full bg-white">
         {/* Encabezados de la tabla con opciones de ordenamiento */}
-        <div className="bg-gray-100 grid grid-cols-5 gap-4 px-4 py-3 font-semibold text-gray-700">
+        <div className="bg-gray-100 grid grid-cols-6 gap-4 px-4 py-3 font-semibold text-gray-700">
           <div
             className="w-1/6 cursor-pointer flex items-center gap-2"
             onClick={() => handleSort("projectCode")}
@@ -89,17 +89,27 @@ export default function ProjectsTable({ projects }) {
             Email
             <span>{getSortIcon("email")}</span>
           </div>
+          <div
+            className="w-1/6 flex items-end gap-2"
+          >
+            Acciones
+          </div>
         </div>
 
         {/* Filas de la tabla para cada proyecto */}
         {displayedProjects.map((project, index) => (
           <div
             key={project._id}
-            className={`grid grid-cols-5 gap-4 border-b px-4 py-5 ${
-              index % 2 === 0 ? "bg-gray-50" : "bg-white"
-            }`}
+            className={`grid grid-cols-6 gap-4 border-b px-4 py-5 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"
+              }`}
           >
-            <ProjectCard project={project} />
+            <ProjectCard
+              key={project._id}
+              project={project}
+              onDelete={(deletedId) =>
+                setDisplayedProjects((prev) => prev.filter((p) => p._id !== deletedId))
+              }
+            />
           </div>
         ))}
       </div>
