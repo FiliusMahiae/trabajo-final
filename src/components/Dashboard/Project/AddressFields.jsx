@@ -1,7 +1,11 @@
 export default function AddressFields({ register, errors }) {
+    // Componente `AddressFields` que renderiza campos para ingresar una dirección.
+    // Recibe `register` para vincular los campos al formulario y `errors` para mostrar mensajes de error.
+
     return (
         <div>
             <label className="block text-sm font-medium mb-2">Dirección</label>
+            {/* Campo para la calle */}
             <input
                 type="text"
                 placeholder="Calle"
@@ -10,6 +14,7 @@ export default function AddressFields({ register, errors }) {
             />
             {errors.address?.street && <span className="text-red-500 text-sm">{errors.address.street.message}</span>}
 
+            {/* Campo para el número */}
             <input
                 type="text"
                 placeholder="Número"
@@ -24,6 +29,7 @@ export default function AddressFields({ register, errors }) {
             />
             {errors.address?.number && <span className="text-red-500 text-sm">{errors.address.number.message}</span>}
 
+            {/* Campo para el código postal */}
             <input
                 type="text"
                 placeholder="Código Postal"
@@ -38,6 +44,7 @@ export default function AddressFields({ register, errors }) {
             />
             {errors.address?.postal && <span className="text-red-500 text-sm">{errors.address.postal.message}</span>}
 
+            {/* Campo para la ciudad */}
             <input
                 type="text"
                 placeholder="Ciudad"
@@ -46,6 +53,7 @@ export default function AddressFields({ register, errors }) {
             />
             {errors.address?.city && <span className="text-red-500 text-sm">{errors.address.city.message}</span>}
 
+            {/* Campo para la provincia */}
             <input
                 type="text"
                 placeholder="Provincia"

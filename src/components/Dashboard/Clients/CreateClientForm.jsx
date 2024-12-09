@@ -1,11 +1,15 @@
 "use client";
+// Habilita el modo cliente para que este componente se ejecute en el navegador.
 
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
+// Importaciones necesarias para manejar formularios, estado, navegación, y componentes reutilizables.
+
 import InputField from "./InputField";
 import AddressFields from "./AddressFields";
 import Popup from "./Popup";
+// Importa componentes reutilizables para campos de entrada, dirección, y notificaciones emergentes.
 
 export default function CreateClientForm({
   onSubmit,
@@ -14,16 +18,30 @@ export default function CreateClientForm({
   errors,
   onFileChange,
 }) {
+  // Componente `CreateClientForm` para manejar la creación de un cliente.
+  // Recibe:
+  // - `onSubmit`: Función para manejar el envío del formulario.
+  // - `showPopup` y `setShowPopup`: Controlan la visibilidad del popup.
+  // - `errors`: Maneja errores de validación.
+  // - `onFileChange`: Función para manejar la carga del logo.
+
   const { register, handleSubmit, reset } = useForm();
   const [selectedFileName, setSelectedFileName] = useState("");
+  // Estado para almacenar el nombre del archivo seleccionado.
 
   return (
     <div className="text-gray-900 p-8">
+      {/* Contenedor principal con estilos para espaciado y color. */}
       <h1 className="text-2xl font-bold mb-6">Crear Cliente</h1>
+      {/* Título del formulario. */}
+
       {showPopup && <Popup setShowPopup={setShowPopup} />}
+      {/* Muestra el popup si `showPopup` es verdadero. */}
+
       <form
         onSubmit={handleSubmit((data) => onSubmit(data, reset))}
         className="space-y-6"
+        // Manejador de envío de formulario con validación.
       >
         {/* Nombre */}
         <InputField
@@ -64,7 +82,7 @@ export default function CreateClientForm({
           <div className="flex items-center space-x-4">
             <label
               htmlFor="logo"
-              className="cursor-pointer bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-all duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              className="cursor-pointer bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-all duration-300 shadow-md"
             >
               Seleccionar archivo
             </label>
@@ -78,7 +96,6 @@ export default function CreateClientForm({
             accept="image/*"
             onChange={(e) => {
               onFileChange(e.target.files[0]);
-              // Si quieres mostrar el nombre del archivo seleccionado:
               setSelectedFileName(e.target.files[0]?.name || "");
             }}
             className="hidden"
@@ -90,14 +107,14 @@ export default function CreateClientForm({
           <Link href="/dashboard/clients">
             <button
               type="button"
-              className="w-full py-2 px-4 white text-red-600 border border-red-600 rounded-md shadow-md hover:bg-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-all duration-300"
+              className="w-full py-2 px-4 text-red-600 border border-red-600 rounded-md shadow-md hover:bg-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
             >
               Descartar
             </button>
           </Link>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md transition-all duration-300"
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md transition-all duration-300"
           >
             Crear Cliente
           </button>

@@ -18,10 +18,10 @@ export default function ProjectAlbaranList({ projectId, clientId }) {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Albaranes del Proyecto</h2>
-      <AlbaranForm 
-        projectId={projectId} 
-        clientId={clientId} 
-        onNewAlbaran={fetchAlbaranes} 
+      <AlbaranForm
+        projectId={projectId}
+        clientId={clientId}
+        onNewAlbaran={fetchAlbaranes}
       />
       <AlbaranList albaranes={albaranes} />
     </div>

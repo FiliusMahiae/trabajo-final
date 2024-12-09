@@ -116,4 +116,3 @@ export default function ProjectsTable({ projects }) {
     </div>
   );
 }
-

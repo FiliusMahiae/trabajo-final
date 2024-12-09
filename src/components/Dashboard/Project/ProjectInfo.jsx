@@ -26,8 +26,4 @@ export default function ProjectInfo({ project }) {
       </div>
     </div>
   );
-}
-
-
-
-  
+} 

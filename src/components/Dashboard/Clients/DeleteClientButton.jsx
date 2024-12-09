@@ -1,40 +1,29 @@
 "use client";
+// Habilita el modo cliente.
 
 import React from "react";
 import getCookie from "@/components/Auth/getCookie";
+// Obtiene el token de autenticación.
 
 export default function DeleteClientButton({ clientId, onDelete }) {
-    const handleDelete = async () => {
-        const confirmDelete = window.confirm(
-            "¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer."
-        );
+    // Botón para eliminar un cliente.
 
-        if (!confirmDelete) return;
+    const handleDelete = async () => {
+        // Lógica para confirmar y realizar la eliminación.
+        if (!window.confirm("¿Estás seguro de que deseas eliminar este cliente?")) return;
 
         const token = getCookie("jwt");
-        if (!token) {
-            console.error("Token de autenticación no encontrado");
-            return;
-        }
+        if (!token) return console.error("Token no encontrado");
 
         try {
             const response = await fetch(
                 `https://bildy-rpmaya.koyeb.app/api/client/${clientId}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
+                { method: "DELETE", headers: { Authorization: `Bearer ${token}` } }
             );
-
-            if (response.ok) {
-                onDelete && onDelete(clientId);
-            } else {
-                alert("No se pudo eliminar el cliente. Inténtalo de nuevo más tarde.");
-            }
+            if (response.ok) onDelete && onDelete(clientId);
+            else alert("Error al eliminar el cliente.");
         } catch (error) {
-            console.error("Error eliminando el cliente:", error);
+            console.error("Error:", error);
         }
     };
 
