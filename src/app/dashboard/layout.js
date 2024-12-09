@@ -13,7 +13,7 @@ const DashboardLayout = ({ children }) => {
         <div className="w-4/5 flex flex-col">
           <Navbar />
           <main className="flex-1 overflow-auto p-3 bg-slate-400">
-            <div className="text-gray-900 bg-slate-100 border p-3 h-auto rounded-xl">{children}</div>
+            <div className="text-gray-900 bg-slate-100 border p-3 h-full rounded-xl">{children}</div>
             </main>
         </div>
       </div>

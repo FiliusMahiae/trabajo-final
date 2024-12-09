@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useNavbar } from "@/context/NavbarContext";
 import getCookie from "@/components/Auth/getCookie";
 import { useForm } from "react-hook-form";
 
 export default function ProfilePage() {
+  const { updateNavbar } = useNavbar();
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
   const [errorUser, setErrorUser] = useState("");
@@ -13,6 +15,10 @@ export default function ProfilePage() {
   const [profileImage, setProfileImage] = useState("/userProfile.png");
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+  useEffect(() => {
+    updateNavbar("Perfil", "Tu informacón");
+  }, [updateNavbar]);
 
   const fetchUser = async () => {
       const token = getCookie("jwt");
