@@ -65,8 +65,6 @@ export default function PageCreateClient() {
           if (!uploadResponse.ok) {
             throw new Error("Error al subir la imagen");
           }
-
-          console.log("Imagen subida con éxito");
         }
       } catch (error) {
         console.error("Error al crear cliente o subir imagen:", error);
