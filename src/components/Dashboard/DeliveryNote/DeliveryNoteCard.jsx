@@ -22,7 +22,7 @@ export default function DeliveryNoteCard({ note, index, onDelete }) {
         </div>
       </Link>
       <div className="w-1/6">{new Date(note.createdAt).toLocaleDateString()}</div>
-      <div className="w-auto">{note.description}</div>
+      <div className="w-auto truncate">{note.description}</div>
       <div className="w-1/6">{note.hours}</div>
       <div className="w-1/6">
         <span

@@ -19,25 +19,26 @@ export default function ClientDetails({ client, onEdit, onDelete }) {
     }, [client, reset]);
 
     const onSubmit = async (data) => {
-        const token = getCookie('jwt');
-        try {
-            const response = await fetch(`https://bildy-rpmaya.koyeb.app/api/client/${client._id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error("Error al actualizar el cliente");
+        if(client && client._id){
+            const token = getCookie('jwt');
+            try {
+                const response = await fetch(`https://bildy-rpmaya.koyeb.app/api/client/${client._id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(data),
+                });
+    
+                if (!response.ok) {
+                    throw new Error("Error al actualizar el cliente");
+                }
+    
+                onEdit();
+            } catch (error) {
+                console.error("Error al actualizar el cliente:", error);
             }
-
-            const updatedClient = await response.json();
-            onEdit();
-        } catch (error) {
-            console.error("Error al actualizar el cliente:", error);
         }
     };
 

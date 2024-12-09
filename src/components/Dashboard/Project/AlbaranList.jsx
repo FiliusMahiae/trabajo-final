@@ -1,3 +1,5 @@
+"use client";
+
 export default function AlbaranList({ albaranes }) {
     return (
       <ul className="space-y-4">

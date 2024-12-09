@@ -1,3 +1,5 @@
+"use client";
+
 import ClientCard from "./ClientCard";
 
 export default function ClientsList({ clients, onSelect }) {

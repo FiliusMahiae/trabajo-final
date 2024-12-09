@@ -1,3 +1,5 @@
+"use client";
+
 export default function FilterBar({ register, handleSubmit }) {
     return (
         <form onSubmit={handleSubmit} className="mb-4 p-4 bg-white shadow-md rounded-lg">
