@@ -71,11 +71,11 @@ export default function ProjectCard({ project, onDelete }) {
             <div className="w-auto text-left text-gray-800">
                 <div className="flex items-center">
                     <img
-                        src={project.clientLogo || "/clientPlaceholder.jpg"}
-                        alt={project.clientName || "Cliente no encontrado"}
+                        src={client.logo || "/clientPlaceholder.jpg"}
+                        alt={client.name || "Cliente no encontrado"}
                         className="h-8 w-8 rounded-full mr-2"
                     />
-                    <span>{project.clientName || "Cliente no encontrado"}</span>
+                    <span>{client.name || "Cliente no encontrado"}</span>
                 </div>
             </div>
             <div className="w-1/6 text-left text-gray-800">{project.email}</div>

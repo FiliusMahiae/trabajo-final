@@ -128,16 +128,16 @@ export default function ClientDetails({ client, onEdit, onDelete }) {
                 </div>
 
                 <div className="mb-4 grid grid-cols-2 gap-4">
-                    <DeleteClientButton
-                        clientId={client._id}
-                        onDelete={onDelete}
-                    />
                     <button
                         type="submit"
                         className="w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300"
                     >
                         Editar Cliente
                     </button>
+                    <DeleteClientButton
+                        clientId={client._id}
+                        onDelete={onDelete}
+                    />
                 </div>
 
             </form>

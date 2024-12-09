@@ -1,4 +1,6 @@
 export default function ClientCard({ client, onSelect }) {
+    console.log(client);
+    
     return (
         <li onClick={() => onSelect(client)} key={client._id} className="p-6 border border-gray-300 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex items-center gap-4 cursor-pointer">
             {client.logo ? 
